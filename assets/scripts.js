@@ -56,7 +56,7 @@
   };
 
   recognition.onnomatch = function (event) {
-    diagnostic.textContent = 'I didnt recognise that color.';
+    diagnostic.textContent = 'I didnt recognise that word.';
   };
 
   recognition.onerror = function (event) {
@@ -64,7 +64,15 @@
   };
 
   window.onload = function() {
-    recognition.start();
-    console.log('Ready to receive a color command.');
+    setInterval(startListening, 1000);
   };
+
+  function startListening() {
+    try {
+      recognition.start();
+      console.log('Ready to receive a command.');
+    } catch (err) {
+      console.log('It is already listening, nothing to do..');
+    }
+  }
 })();
